@@ -21,7 +21,8 @@ public class Sistema {
 		DocumentBuilder builder = fabrica.newDocumentBuilder();
 		
 		Document documento = builder.parse("src/vendas.xml");
-		
+		Element tipoDinheiro = documento.getDocumentElement();
+
 		NodeList produtos = documento.getElementsByTagName("produto");
 
 		for (int i = 0; i < produtos.getLength(); i++) {
@@ -31,7 +32,7 @@ public class Sistema {
 			Double preco = Double.parseDouble(produto.getElementsByTagName("preco").item(0).getTextContent());
 			
 			Produto item = new Produto(nome, preco);
-			System.out.println(item.toString());
+			System.out.println(item.toString() +" - "+ tipoDinheiro.getAttribute("moeda"));
 		}
 		
 	}
